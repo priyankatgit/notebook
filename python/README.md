@@ -1,49 +1,49 @@
-# Mostly Asked Questions
+# General
 
 ## #1 List, Tuple and Set
-    - **Mutability**:
-        - List and Set are mutable. Tuple is immutable
-        - ***Although Sets are mutable,*** we cannot access or change any element of a Set via indexing or slicing. Hence, we can only add new elements into a set — not change them.
-        - Tuple and List support indexing and slicing, while Set does not.
-        ```python
-            fruit_list = ['🍎', '🍓', '🍐']
-            fruit_list[1]
-            # '🍓'
+- **Mutability:**
+    - List and Set are mutable. Tuple is immutable
+    - ***Although Sets are mutable,*** we cannot access or change any element of a Set via indexing or slicing. Hence, we can only add new elements into a set — not change them.
+- Tuple and List support indexing and slicing, while Set does not.
+```python
+    fruit_list = ['🍎', '🍓', '🍐']
+    fruit_list[1]
+    # '🍓'
 
-            animal_tuple = ('🐶', '🐱', '🐮')
-            animal_tuple[2]
-            # '🐮'
+    animal_tuple = ('🐶', '🐱', '🐮')
+    animal_tuple[2]
+    # '🐮'
 
-            vehicle_set = {'🚐', '🏍', '🚗'}
-            vehicle_set[0]
-            # TypeError: 'set' object is not subscriptable
-        ```
-    - **Order of data**
-        -  “Set and Dictionary are not ordered in Python.” Well, that is only half the truth today, depending on which version of Python you are using. 
-        - Before Python 3.6, Dictionaries and Sets do not keep their insertion order, **BUT Starting from Python 3.7,** Dictionary and Set are officially ordered by the time of insertion.
+    vehicle_set = {'🚐', '🏍', '🚗'}
+    vehicle_set[0]
+    # TypeError: 'set' object is not subscriptable
+```
+- **Order of data**
+    -  “Set and Dictionary are not ordered in Python.” Well, that is only half the truth today, depending on which version of Python you are using. 
+    - Before Python 3.6, Dictionaries and Sets do not keep their insertion order, **BUT Starting from Python 3.7,** Dictionary and Set are officially ordered by the time of insertion.
 
-    - **Set**: 
-        - Stores unique data only. If duplicate data stored, it will not be considered, it will simply ignore without an error.
-        -  Set and Dictionary interchangeably bot are based on Hash Table (or Hash Map), and so finding value in set and key in dictionary is faster then list.
-            ``` python
-            this_set = {"apple", "banana", "cherry"}
-            if "apple" in this_set:
-                print("Yes, 'apple' is in this set")
-            ```   
-    - **Declaration**:
-        - List: A comma-separated values (items) between square brackets [].
-        - Tuple: Defined under parenthesis ().
-        - Set: Initialize using `set()` constructor or curly brackets {}.
-    - **Summary**
-        - If you need to store duplicates, go for List or Tuple.
-        - For List vs. Tuple, if you do not intend to mutate, go for Tuple.
-        - If you do not need to store duplicates, always go for Set or Dictionary. Hash maps are significantly faster when it comes to determining if an object is present in the Set (e.g. x in set_or_dict).
-    - **Resources**
-        - https://jerrynsh.com/tuples-vs-lists-vs-sets-in-python/
-        - https://www.w3schools.com/python/python_lists.asp
-        - https://www.w3schools.com/python/python_tuples.asp
-        - https://www.w3schools.com/python/python_sets.asp
-        - [list_tuple_set.py](./list_tuple_set.py)
+- **Set**: 
+    - Stores unique data only. If duplicate data stored, it will not be considered, it will simply ignore without an error.
+    -  Set and Dictionary interchangeably bot are based on Hash Table (or Hash Map), and so finding value in set and key in dictionary is faster then list.
+```python
+this_set = {"apple", "banana", "cherry"}
+if "apple" in this_set:
+    print("Yes, 'apple' is in this set")
+```   
+- **Declaration**:
+    - List: A comma-separated values (items) between square brackets [].
+    - Tuple: Defined under parenthesis ().
+    - Set: Initialize using `set()` constructor or curly brackets {}.
+- **Summary**
+    - If you need to store duplicates, go for List or Tuple.
+    - For List vs. Tuple, if you do not intend to mutate, go for Tuple.
+    - If you do not need to store duplicates, always go for Set or Dictionary. Hash maps are significantly faster when it comes to determining if an object is present in the Set (e.g. x in set_or_dict).
+- **Resources**
+    - https://jerrynsh.com/tuples-vs-lists-vs-sets-in-python/
+    - https://www.w3schools.com/python/python_lists.asp
+    - https://www.w3schools.com/python/python_tuples.asp
+    - https://www.w3schools.com/python/python_sets.asp
+    - [list_tuple_set.py](./list_tuple_set.py)
 
 
 ## #2 What is Decorator?
@@ -201,7 +201,7 @@ So, integers are still immutable and this is how it works. To see it better, use
 - https://stackoverflow.com/questions/62177372/is-integer-immutable-or-mutable
 
 
-# Commonly Asked Questions
+# Essentials
 
 ## #1 Explain Ternary Operator in Python?
 ```python
@@ -380,7 +380,7 @@ with FileManager('test.txt', 'w') as f:
 ## #18 Difference Between Abstration and Encapsulation.
 
 
-# Tricky Questions (31-40 Ques-Ans)
+# Specialist
 
 ## #1 Does Python support multiple inheritence. (Diamond Problem)
 
@@ -399,10 +399,47 @@ with FileManager('test.txt', 'w') as f:
 ## #8 How to read multiple value from single input? --- By Split()
 
 ## #9 How to copy and delete a dictionary
+```python
+import copy
+
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964,
+  "person": {
+      "name": "Priyank",
+      "location": "US",
+      "state": "LA",
+  }
+}
+
+# Way1, Way2 and Way3 do the shallow copy.
+# Way4 is deep copy
+
+# Way1
+mydict = thisdict.copy()
+
+# Way2
+#mydict = dict(thisdict)
+
+mydict["brand"] = "Hyundai"
+mydict["person"]["name"] = "Richa"
+
+# Way3
+mydict = copy.copy(thisdict)
+mydict["person"]["location"] = "India"
+
+# Way4
+mydict = copy.deepcopy(thisdict)
+mydict["person"]["state"] = "Guj"
+
+print(thisdict)
+print(mydict)
+```
 
 ## #10 Difference Between Anonymous and Lambda function
 
-# Rarely Asked Questions (41-52 Ques-Ans)
+# Exprert
 
 ## #1 How to achieve Multiprocessing and Multithreading in python?
 
@@ -417,14 +454,145 @@ with FileManager('test.txt', 'w') as f:
 ## #6 What are Unittests in Python
 
 ## #7 How to use Map, filter and reduce functions in python?
+```python
+from functools import reduce
+
+list1 = [*range(10)]
+
+# Filter
+odd_nrs = [*filter(lambda x : x%2!=0, list1)]
+print(odd_nrs)
+
+#Map
+nums = [*map(lambda x : x * x, list1)]
+print(nums)
+
+#Reduce
+reducer_num = reduce(lambda x,y:x+y, list1)
+print(reducer_num)
+
+#Polyfill of filter
+def myfilter(func, list):
+    result = []
+    for l in list:
+        if func(l):
+            result.append(l)
+    return result
+
+even_nrs = [*myfilter(lambda x:x%2==0, list1)]
+print(even_nrs)
+```
 
 ## #8 Difference Between Shallow copy and deep copy
+In simple term, shallow copy does not copy the object resides in nested level, so if you change the value of nested object after the shallow copy, it will changs the value of original object.
+
+While deep copy drill down the object in any hierarchy level and give complete copy of the object. 
+
+```python
+import copy
+# Shallow copy
+mydict = copy.copy(thisdict)
+mydict["person"]["location"] = "India"
+
+
+# Deep copy
+mydict = copy.deepcopy(thisdict)
+mydict["person"]["state"] = "Guj"
+
+print(thisdict)
+print(mydict)
+```
 
 ## #9 How an object be copied in python
 
 ## #10 What does term MONKEY PATCHING refer to in python?
 
-## #11 What is operator overloading & Dunder Method.
+## #11 What is operator overloading & Dunder/Magic Method.
+
+Dunder / Magic methods : – Those methods which are starts with double underscore and ends with double underscores are called Dunder or Magic methods. These methods are very special methods. There are so many dunder methods from which today we are going to see some important methods that are commonly used.
+
+Ex – __str__(self), __repr__(self), __init__(self), __add__(self, other), __sub__(self, other), __mul__(self, other).
+
+- __init__(self) :– As we already know about __init__(self) and also its works. it is basically a constructor. Constructor means when the objects is created it is automatically called.
+
+- __str__(self) :- This is a string method This will use to print the string in a format that understand by the users.
+
+- __repr__(self):- This is a representation method. This is also same as __str__() method but this is basically use while debugging.
+
+```python
+class example:
+ 
+    def __init__(self,name,city):
+        self.name = name
+        self.city = city
+ 
+    def __str__(self):
+        return f"My name is {self.name} and i live in {self.city}"
+ 
+    def __repr__(self):
+        return f"example('{self.name}','{self.city}')"
+     
+     
+    ex1 = example("asif","lucknow")
+     
+    # this is the another method to call it does the same thing
+     
+    print(str(ex1))
+    >> My name is asif and i live in lucknow
+     
+    print(repr(ex1))
+    >> example('asif','lucknow')
+```
+
+Operator overloading with Dunder methods :- Operator overloading means using same operator for different use like add to numbers or add two string.
+
+- __add__(self, other): This method is use to add two values ( like it can be integer float or string) this is used for operator overloading.
+
+- __sub__(self, other): It is used for substraction
+
+- __mul__(self,other): It is use for multiplication
+
+- __len__(self) :- This method is use to find the length of a string or length of a list.
+
+There are so many methods for operator overloading . These are most common used methods for overloading.
+
+ **Resources**
+- https://codeupon.wordpress.com/2021/02/14/dunder-magic-method-and-operator-overloading/
+
+```
+class calculation:
+    def __init__(self,num1):
+        self.num1 = num1
+ 
+    def __add__(self, other):
+        return self.num1 + other.num1
+ 
+    def __sub__(self, other):
+        return self.num1 - other.num1
+ 
+    def __mul__(self, other):
+        return self.num1 + other.num1
+ 
+    def __len__(self):
+        return len(self.num1)
+ 
+ 
+n1 = calculation(43)
+n2 = calculation(54)
+print(n1 + n2) >> 97
+print(n1 - n2) >> -11
+print(n1 * n2) >> 97
+ 
+# This is also use for string
+s1 = calculation("Hello")
+s2 = calculation("World")
+print(s1 + s2) >> HelloWorld
+ 
+#now len is use the find the length of objects
+f1 = calculation("this is a string") 
+print(len(f1)) >> 16
+```
+
 
 ## #12 Draw Some Pattern/Graphs.
 
